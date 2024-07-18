@@ -93,7 +93,8 @@ customers = customers.map((fullName) => {
   return fullName;
 });
 
-console.log(customers);
+console.log(Jcustomers);
+// console.log(JSON.stringify(customers)); //to print array values
 
 //Question 3
 
