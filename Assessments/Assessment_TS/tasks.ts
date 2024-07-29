@@ -1,3 +1,71 @@
+export interface departments {
+  id: number;
+  name: string;
+  location: string;
+  skills?: {
+    name: string;
+    proficiency: string;
+  };
+  rewards?: {
+    name: string;
+    points: string;
+  };
+}
+
+export interface employees {
+  empid: number;
+  name: string;
+  departmentId: number;
+  position: string;
+}
+
+export class getAllDetails {
+  public Emp: employees[];
+  public Dep: departments[];
+  constructor(Emp: employees[], Dep: departments[]) {
+    this.Dep = Dep;
+    this.Emp = Emp;
+  }
+  getAllEmpId() {
+    return this.Emp.map((emp) => {
+      const deptName = this.Dep.find((dept) => dept.id === emp.departmentId);
+      return deptName
+        ? `Employee id: ${emp.empid}, its department name is ${deptName.name}`
+        : undefined;
+    });
+  }
+  getFirstName() {
+    return this.Emp.map((emp) => {
+      const fName = emp.name.split(" ")[0];
+      const Deptname = this.Dep.find((dept) => dept.id === emp.departmentId);
+      return Deptname
+        ? `Firstname of emp id:${emp.empid} is ${fName} and its respective department name is ${Deptname.name}`
+        : undefined;
+    });
+  }
+  getPosition() {
+    return this.Emp.map((emp) => {
+      const fName = emp.name.split(" ")[0];
+      const DeptName = this.Dep.find((dept) => dept.id === emp.departmentId);
+      return DeptName
+        ? `Positions of ${fName} in ${DeptName.name} department is ${emp.position}`
+        : undefined;
+    });
+  }
+  getCivilEmpName() {
+    return this.Emp.map((emp) => {
+      const civilName = this.Dep.find(
+        (dept) =>
+          dept.id === emp.departmentId &&
+          dept.skills?.name === "civil engineering"
+      );
+      return civilName
+        ? `${emp.name} has ${civilName.skills?.name} skill and his department name is ${civilName.name}`
+        : undefined;
+    });
+  }
+}
+
 /*const Department = [
   {
     id: 1,
@@ -291,71 +359,3 @@ function CivilempName(): void {
 }
 
 CivilempName();*/
-
-export interface departments {
-  id: number;
-  name: string;
-  location: string;
-  skills?: {
-    name: string;
-    proficiency: string;
-  };
-  rewards?: {
-    name: string;
-    points: string;
-  };
-}
-
-export interface employees {
-  empid: number;
-  name: string;
-  departmentId: number;
-  position: string;
-}
-
-export class getAllDetails {
-  public Emp: employees[];
-  public Dep: departments[];
-  constructor(Emp: employees[], Dep: departments[]) {
-    this.Dep = Dep;
-    this.Emp = Emp;
-  }
-  getAllEmpId() {
-    return this.Emp.map((emp) => {
-      const deptName = this.Dep.find((dept) => dept.id === emp.departmentId);
-      return deptName
-        ? `Employee id: ${emp.empid}, its department name is ${deptName.name}`
-        : undefined;
-    });
-  }
-  getFirstName() {
-    return this.Emp.map((emp) => {
-      const fName = emp.name.split(" ")[0];
-      const Deptname = this.Dep.find((dept) => dept.id === emp.departmentId);
-      return Deptname
-        ? `Firstname of emp id:${emp.empid} is ${fName} and its respective department name is ${Deptname.name}`
-        : undefined;
-    });
-  }
-  getPosition() {
-    return this.Emp.map((emp) => {
-      const fName = emp.name.split(" ")[0];
-      const DeptName = this.Dep.find((dept) => dept.id === emp.departmentId);
-      return DeptName
-        ? `Positions of ${fName} in ${DeptName.name} department is ${emp.position}`
-        : undefined;
-    });
-  }
-  getCivilEmpName() {
-    return this.Emp.map((emp) => {
-      const civilName = this.Dep.find(
-        (dept) =>
-          dept.id === emp.departmentId &&
-          dept.skills?.name === "civil engineering"
-      );
-      return civilName
-        ? `${emp.name} has ${civilName.skills?.name} skill and his department name is ${civilName.name}`
-        : undefined;
-    });
-  }
-}
