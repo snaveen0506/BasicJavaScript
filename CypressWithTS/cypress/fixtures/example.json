@@ -1,0 +1,12 @@
+[
+  {
+    "vegName": "Cauliflower",
+    "vegcount": 5,
+    "price": 60
+  },
+  {
+    "vegName": "Brocolli",
+    "vegcount": 3,
+    "price": 120
+  }
+]
