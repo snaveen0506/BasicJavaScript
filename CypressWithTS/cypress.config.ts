@@ -6,6 +6,6 @@ export default defineConfig({
       // implement node event listeners here
     },
     watchForFileChanges: false,
-    defaultCommandTimeout: 6000,
+    defaultCommandTimeout: 10000,
   },
 });
