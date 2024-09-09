@@ -1,5 +1,8 @@
 import { ILogin } from "../interface/Ilogin";
+import { injectable } from "inversify";
+import "reflect-metadata";
 
+@injectable()
 export class loginpage implements ILogin {
   AddCust = "button[ng-click='addCust()']";
   FirstName = "input[placeholder='First Name']";
